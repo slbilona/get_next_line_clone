@@ -1,23 +1,34 @@
-#include <unistd.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <fcntl.h>
 #include "get_next_line.h"
-#include <stdlib.h>
-#include <stdio.h>
+/*
+char *ft_cat(char *str, char *buf)
+{
+	int i;
+	int j;
+	char *new;
+
+	i = 0;
+	j = 0;
+	new = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(buf) + 1));
+	while(str[i])
+	{
+		new[i]
+	}
+}
 
 char *get_next_line(int fd)
 {
-	static char buf[BUFFER_SIZE];
+	static char buf[BUFFER_SIZE + 1];
 	int size;
-	static int i = 0;
+	static int	i = 0;
 	int j = 0;
-	int k = i;
+	int k;
 	int o = 0;
 	char *str;
+
+	k = i;
 	if(i == 0)
 	{
-		size = read(fd, buf, BUFFER_SIZE - 1);
+		size = read(fd, buf, BUFFER_SIZE);
 		//printf("%d", size);
 		buf[size] = 0;
 	}
@@ -37,7 +48,7 @@ char *get_next_line(int fd)
 		i = -1;
 	return (str);
 }
-/*
+
 int main()
 {
 	int fd;
@@ -53,4 +64,5 @@ int main()
 		i++;
 	}
 	close(fd);
-}*/
+}
+*/
