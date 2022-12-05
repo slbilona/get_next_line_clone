@@ -134,10 +134,14 @@ int main()
 {
 	int fd  = open("test", O_RDONLY);
 	int i = 0;
+	char *ligne;
 	while(i < 5)
 	{
-		printf("%s", get_next_line(fd));
+		ligne = get_next_line(fd);
+		printf("%s", ligne);
 		i++;
+		free(ligne);
 	}
+	
 	close(fd);
 }
