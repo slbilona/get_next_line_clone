@@ -2,7 +2,7 @@
 
 int	ft_strchr(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
@@ -21,7 +21,7 @@ char	*ft_cat(char *str, char *buf)
 	char	*new;
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	j = 0;
 	if (str == NULL)
@@ -75,9 +75,8 @@ char	*ft_ligne(char *str)
 {
 	char	*ligne;
 	int		i;
-	
+
 	i = 0;
-	
 	ligne = malloc(sizeof(char) * (ft_strlen(str) + 2));
 	while (str[i] && str[i] != '\n')
 	{
@@ -123,12 +122,11 @@ char	*ft_new_str(char *str)
 char	*get_next_line(int fd)
 {
 	static char	*str;
-	char	*ligne;
-	
+	char		*ligne;
+
 	str = ft_read(fd, str);
 	ligne = ft_ligne(str);
 	str = ft_new_str(str);
-		
 	return (ligne);
 }
 
