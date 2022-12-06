@@ -14,6 +14,8 @@
 
 char *get_next_line(int fd);
 int ft_strlen(char *str);
+int ft_strchr(char *str, char c);
+char *ft_free_str(char *str);
 
 #endif
 

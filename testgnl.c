@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+/*#include "get_next_line.h"
 
 int	ft_strchr(char *str, char c)
 {
@@ -144,4 +144,4 @@ int main()
 	}
 	
 	close(fd);
-}
+}*/
