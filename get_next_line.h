@@ -9,13 +9,14 @@
 #include <stdio.h>
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
+#define BUFFER_SIZE 100
 #endif
 
-char *get_next_line(int fd);
-int ft_strlen(char *str);
-int ft_strchr(char *str, char c);
-char *ft_free_str(char *str);
-
+char	*get_next_line(int fd);
+int		ft_strlen(const char *str);
+int		ft_strchr(char *str, char c);
+char	*ft_free_str(char *str);
+char	*ft_cat(char *str, char *buf);
+char	*ft_copy(const char *str);
+char	*ft_read(int fd, char *str);
 #endif
-
