@@ -37,10 +37,7 @@ char	*ft_free_str(char *str)
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (str[i] == 0)
-	{
-		free(str);
-		return (NULL);
-	}
+		return (ft_free(str));
 	new = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 	if (!new)
 		return (NULL);
@@ -54,4 +51,10 @@ char	*ft_free_str(char *str)
 	new[j] = 0;
 	free(str);
 	return (new);
+}
+
+char	*ft_free(char *str)
+{
+	free(str);
+	return (NULL);
 }

@@ -2,12 +2,13 @@
 
 int main()
 {
+	char	*str;
 	int fd = open("test", O_RDONLY);
-	char *str;
 	int i = 0;
-	if(fd >= 0)
+
+	if (fd >= 0)
 	{
-		while(i < 7)
+		while (i < 10)
 		{
 			str = get_next_line(fd);
 			printf("str = %s", str);
@@ -51,18 +52,13 @@ char	*ft_cat(char *str, char *buf)
 		str[0] = 0;
 	}
 	if (buf[0] == 0 && str[0] == 0)
-	{
-		free(str);
-		return (NULL);
-	}
+		return (ft_free(str));
 	new = malloc(sizeof(char) * (ft_strlen(str) + ft_strlen(buf) + 1));
 	if (!new)
 		return (NULL);
-	while (str[i])
-	{
-		new[i] = str[i];
-		i++;
-	}
+	while (str[j])
+		new[i++] = str[j++];
+	j = 0;
 	while (buf[j])
 		new[i++] = buf[j++];
 	new[i] = 0;
@@ -79,7 +75,7 @@ char	*ft_copy(const char *str)
 	if (!str)
 		return (NULL);
 	ligne = malloc(sizeof(char) * (ft_strlen(str) + 2));
-	if(!ligne)
+	if (!ligne)
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 	{
@@ -104,23 +100,17 @@ char	*ft_read(int fd, char *str)
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if(!buf)
+	if (!buf)
 		return (NULL);
 	while (i && !ft_strchr(str, '\n'))
 	{
 		i = read(fd, buf, BUFFER_SIZE);
 		if (i < 0)
-		{
-			free(buf);
-			return (NULL);
-		}
+			return (ft_free(buf));
 		buf[i] = 0;
 		str = ft_cat(str, buf);
 		if (!str)
-		{
-			free(buf);
-			return (NULL);
-		}
+			return (ft_free(buf));
 	}
 	free(buf);
 	return (str);
