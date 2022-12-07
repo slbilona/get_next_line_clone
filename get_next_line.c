@@ -1,23 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ilselbon <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/07 11:57:09 by ilselbon          #+#    #+#             */
+/*   Updated: 2022/12/07 11:57:10 by ilselbon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
-
-int main()
-{
-	char	*str;
-	int fd = open("test", O_RDONLY);
-	int i = 0;
-
-	if (fd >= 0)
-	{
-		while (i < 10)
-		{
-			str = get_next_line(fd);
-			printf("str = %s", str);
-			i++;
-			free(str);
-		}
-	}
-	close(fd);
-}
 
 char	*get_next_line(int fd)
 {
@@ -36,6 +29,17 @@ char	*get_next_line(int fd)
 	return (ligne);
 }
 
+char	*ft_str(void)
+{
+	char	*str;
+
+	str = malloc(sizeof(char));
+	if (!str)
+		return (NULL);
+	str[0] = 0;
+	return (str);
+}
+
 char	*ft_cat(char *str, char *buf)
 {
 	char	*new;
@@ -46,10 +50,9 @@ char	*ft_cat(char *str, char *buf)
 	j = 0;
 	if (!str)
 	{
-		str = malloc(sizeof(char));
+		str = ft_str();
 		if (!str)
 			return (NULL);
-		str[0] = 0;
 	}
 	if (buf[0] == 0 && str[0] == 0)
 		return (ft_free(str));
@@ -95,16 +98,20 @@ char	*ft_read(int fd, char *str)
 {
 	char	*buf;
 	int		i;
+	int		buffer;
 
 	i = 1;
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = BUFFER_SIZE;
+	if (BUFFER_SIZE == 1)
+		buffer = 10;
+	buf = malloc(sizeof(char) * (buffer + 1));
 	if (!buf)
 		return (NULL);
 	while (i && !ft_strchr(str, '\n'))
 	{
-		i = read(fd, buf, BUFFER_SIZE);
+		i = read(fd, buf, buffer);
 		if (i < 0)
 			return (ft_free(buf));
 		buf[i] = 0;
